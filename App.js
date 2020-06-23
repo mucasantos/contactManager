@@ -1,19 +1,37 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+//import screens
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+import HomeScreen from './screens/HomeScreen'
+import ViewContact from './screens/ViewContact'
+import AddNewContact from './screens/AddNewContact'
+import EditContact from './screens/EditContact'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+//import react-navigation
+
+import { createAppContainer} from 'react-navigation'
+import { createStackNavigator} from 'react-navigation-stack'
+
+const MainNavigator = createStackNavigator(
+  {
+    Home: {screen: HomeScreen},
+    Add: {screen: AddNewContact},
+    View: {screen: ViewContact},
+    Edit: {screen: EditContact}
+  }, 
+  {
+    defaultNavigationOptions: {
+      headerTintColor: 'blue',
+      headerStyle: {
+       // backgoundColor: 'blue'
+      },
+      headerTitleStyle: {
+        color: 'blue'
+      }
+    } 
   },
-});
+  {
+    initialRouteName: 'HomeScreen'
+  }
+)
+
+const App = createAppContainer(MainNavigator)
+export default App
