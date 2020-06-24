@@ -31,8 +31,7 @@ export default class HomeScreen extends React.Component {
     //collect all contacts
     await AsyncStorage.getAllKeys()
       .then( keys => {
-
-        return AsyncStorage.multiGet(keys)
+         return AsyncStorage.multiGet(keys)
           .then( result => {
             this.setState ( {
               data: result.sort( function(a,b) {
@@ -49,13 +48,13 @@ export default class HomeScreen extends React.Component {
             })
           })
           .catch( error => {
-            console.log(error)
+            console.log('GET ALL' +error)
           })
         })
         .catch( error => {
           console.log (error)
       })
-      console.log(this.state.data)
+      //console.log(this.state.data)
   }
 
   render(){
